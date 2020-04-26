@@ -2,8 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 666,
+  "packagerPid": 13968,
   "expoServerNgrokUrl": "https://cv-tgq.anonymous.rn-starter.exp.direct",
   "packagerNgrokUrl": "https://packager.cv-tgq.anonymous.rn-starter.exp.direct",
-  "ngrokPid": 696
+  "ngrokPid": 13986,
+  "webpackServerPort": null
 }
