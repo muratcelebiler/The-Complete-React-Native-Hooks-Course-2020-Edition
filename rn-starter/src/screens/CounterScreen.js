@@ -1,20 +1,39 @@
 // state kullanabilmek için useState yapısını dahil ediyoruz
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
+
+// reducer fonksiyonu useReducer yapısı için oluşturulmuştur
+const reducer = (state, action) => {
+  // action içerisinden gelen type field'ini kontrol ediyoruz
+  switch (action.type) {
+    case "increment":
+      return { ...state, count: state.count + action.payload };
+    case "decrement":
+      return { ...state, count: state.count - action.payload };
+    default:
+      return state.count;
+  }
+};
 
 const CounterScreen = () => {
   /**
-   * counter değişkenini değiştirmek için bir fonksiyon(setCounter) oluşturmamız gerekiyor.
-   * Oluşturduğumuz fonksiyonun adı set kelimesi ile başlamak zorunda değil! Herhangi bir isim yazabiliriz! Burada önemli olan ikinci parametrenin bir fonksiyon olduğunu anlamak.
-   * Set ettiğimiz fonksiyonda(setCounter) tanımladığımız değişkenin(counter) değerini değiştirebiliyoruz.
+   * useReducer ile reducer yapısını dahil ediyoruz
+   * state: json içerisindeki field'ları bir veritabanı gibi tutar
+   * dispatch: reducer fonksiyonuna action olduğunu bildirerek action fieldını gönderir
    */
-  const [counter, setCounter] = useState(0);
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
 
   return (
     <View>
-      <Button title="Increase" onPress={() => setCounter(counter + 1)} />
-      <Button title="Decrease" onPress={() => setCounter(counter - 1)} />
-      <Text>Counter Default: {counter}</Text>
+      <Button
+        title="Increase"
+        onPress={() => dispatch({ type: "increment", payload: 1 })}
+      />
+      <Button
+        title="Decrease"
+        onPress={() => dispatch({ type: "decrement", payload: 1 })}
+      />
+      <Text>Counter Default: {state.count}</Text>
     </View>
   );
 };
