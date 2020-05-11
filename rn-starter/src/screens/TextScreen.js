@@ -1,13 +1,20 @@
-import React from "react";
-import { Text, StyleSheet, TextInput } from "react-native";
+import React, { useState } from "react";
+import { Text, StyleSheet, TextInput, View } from "react-native";
 
 const TextScreen = () => {
+  const [name, setName] = useState("");
+
   return (
-    /**
-     * autoCapitalize: Bu property ile iOS'daki otomatik ilk harfi büyütme seçeneğini kapatıyoruz
-     * autoCorrect: Bu property ile iOS'daki otomatik tamamlama özelliğini kapatıyoruz
-     */
-    <TextInput style={styles.input} autoCapitalize="none" autoCorrect={false} />
+    <View>
+      <TextInput
+        style={styles.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        value={name}
+        onChangeText={(newValue) => setName(newValue)}
+      />
+      <Text>My name is {name}</Text>
+    </View>
   );
 };
 
