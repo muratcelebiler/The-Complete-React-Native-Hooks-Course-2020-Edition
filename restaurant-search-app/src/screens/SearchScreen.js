@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
@@ -23,6 +23,14 @@ const SearchScreen = () => {
             setErrorMessage("Something went wrong!")
         }
     };
+
+    /**
+     * useEffect ile fonksiyonun bir kez çalıştırılması sağlanır. İkinci parametreye([]) extra bir değer yazarsak o değer değişimce fonksiyon(useEffect) tetiklenir.
+     * Şu anda bu yapıyı çalıştırdığımızda yukarıda konsola yazdığımız Hi There yazısı bir kerelik görüntülenmiş olacaktır.
+     */
+    useEffect(() => {
+        SearchApi('pasta');
+    }, []);
 
     return (
         <View>
